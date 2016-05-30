@@ -201,7 +201,7 @@ for (var i = 0; i < 10; i++) {
 for (var i = 0; i < 20; i++) {
     records['spheres']['mersenne-twister'].push(randomSpheres(MT))
     records['spheres']['lcg'].push(randomSpheres(LCG))
-    records['spheres']['Math.random'].push(recordsrandomSpheres(Math.random))
+    records['spheres']['Math.random'].push(randomSpheres(Math.random))
     console.log('randomSpheres', i)
 }
 
@@ -230,7 +230,7 @@ for (var key in records) {
 
 console.log(records)
 
-fs.writeFile("results.log",JSON.stringify(records), function(err) {
+fs.writeFile("results2.log",JSON.stringify(records), function(err) {
     if(err) {
         return console.log(err);
     }
