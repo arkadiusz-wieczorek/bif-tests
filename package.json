@@ -1,0 +1,23 @@
+{
+  "name": "bif-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arkadiusz-wieczorek/bif-tests.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arkadiusz-wieczorek/bif-tests/issues"
+  },
+  "homepage": "https://github.com/arkadiusz-wieczorek/bif-tests#readme",
+  "dependencies": {
+    "lcg-rnd": "0.0.4",
+    "mersenne-twister": "^1.0.1"
+  }
+}
