@@ -150,7 +150,7 @@ var records = {
         'mersenne-twister': [],
         'mersenne-twister-average': 0,
         'lcg': [],
-        'lcg-avarage': 0,
+        'lcg-average': 0,
         'Math.random': [],
         'Math.random-average': 0
     },
@@ -158,7 +158,7 @@ var records = {
         'mersenne-twister': [],
         'mersenne-twister-average': 0,
         'lcg': [],
-        'lcg-avarage': 0,
+        'lcg-average': 0,
         'Math.random': [],
         'Math.random-average': 0
     },
@@ -166,7 +166,7 @@ var records = {
         'mersenne-twister': [],
         'mersenne-twister-average': 0,
         'lcg': [],
-        'lcg-avarage': 0,
+        'lcg-average': 0,
         'Math.random': [],
         'Math.random-average': 0
     },
@@ -174,7 +174,7 @@ var records = {
         'mersenne-twister': [],
         'mersenne-twister-average': 0,
         'lcg': [],
-        'lcg-avarage': 0,
+        'lcg-average': 0,
         'Math.random': [],
         'Math.random-average': 0
     }
@@ -223,7 +223,7 @@ for (var key in records) {
                 sum = sum + array[i];
             }
             var average_key = subkey+"-average"
-            records[key][avarage_key] = sum / array.length;
+            records[key][average_key] = sum / array.length;
         }
     }
 }
