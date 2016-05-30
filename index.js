@@ -223,14 +223,14 @@ for (var key in records) {
                 sum = sum + array[i];
             }
             var average_key = subkey+"-average"
-            records[key][average_key] = sum / array.length;
+            records[key][avarage_key] = sum / array.length;
         }
     }
 }
 
 console.log(records)
 
-fs.writeFile("results2.log",JSON.stringify(records), function(err) {
+fs.writeFile("results.log",JSON.stringify(records), function(err) {
     if(err) {
         return console.log(err);
     }
