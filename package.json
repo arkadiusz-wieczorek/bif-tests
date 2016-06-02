@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/arkadiusz-wieczorek/bif-tests#readme",
   "dependencies": {
+    "hex-to-dec": "^1.0.1",
     "lcg-rnd": "0.0.4",
     "mersenne-twister": "^1.0.1"
   }

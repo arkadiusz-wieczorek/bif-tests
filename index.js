@@ -7,6 +7,20 @@ var lcg = require ('lcg-rnd');
 lcg.srand = 10;
 
 var fs = require('fs');
+var crypto = require('crypto');
+var hexToDec = require('hex-to-dec');
+
+
+function cryptoPseudoGenerator(){
+    var buf = crypto.randomBytes(128);
+
+    var number = hexToDec(buf.toString('hex'));
+    var generatedNumber = number.toString().split('.')
+
+
+    var result = "0."+generatedNumber[1].split('e')[0]
+    return result
+}
 
 
 function distancePoints(a,b,dimension3D) {
@@ -121,30 +135,6 @@ var LCG = () => lcg.random()
 
 
 
-//
-// console.log('Mersenne Twister')
-// console.log('----------------')
-// console.log('PI test                ', pi(2000, MT))
-// console.log('Parking lot test       ', parking(MT))
-// console.log('Minimum distance test  ', minimumDistance(MT))
-// console.log('Random spheres test    ', randomSpheres(MT))
-//
-//
-// console.log('\nLinear Congruential Generator')
-// console.log('-----------------------------')
-// console.log('PI test                ', pi(2000, LCG))
-// console.log('Parking lot test       ', parking(LCG))
-// console.log('Minimum distance test  ', minimumDistance(LCG))
-// console.log('Random spheres test    ', randomSpheres(LCG))
-//
-//
-// console.log(`\nJavaScript's Math.random`)
-// console.log('------------------------')
-// console.log('PI test                ', pi(2000, Math.random))
-// console.log('Parking lot test       ', parking(Math.random))
-// console.log('Minimum distance test  ', minimumDistance(Math.random))
-// console.log('Random spheres test    ', randomSpheres(Math.random))
-
 var records = {
     "pi": {
         'mersenne-twister': [],
@@ -152,7 +142,9 @@ var records = {
         'lcg': [],
         'lcg-average': 0,
         'Math.random': [],
-        'Math.random-average': 0
+        'Math.random-average': 0,
+        'crypto-nodejs-generator': [],
+        'crypto-nodejs-generator-average': 0
     },
     "parking":{
         'mersenne-twister': [],
@@ -160,7 +152,9 @@ var records = {
         'lcg': [],
         'lcg-average': 0,
         'Math.random': [],
-        'Math.random-average': 0
+        'Math.random-average': 0,
+        'crypto-nodejs-generator': [],
+        'crypto-nodejs-generator-average': 0
     },
     "minimum":{
         'mersenne-twister': [],
@@ -168,7 +162,9 @@ var records = {
         'lcg': [],
         'lcg-average': 0,
         'Math.random': [],
-        'Math.random-average': 0
+        'Math.random-average': 0,
+        'crypto-nodejs-generator': [],
+        'crypto-nodejs-generator-average': 0
     },
     "spheres":{
         'mersenne-twister': [],
@@ -176,7 +172,9 @@ var records = {
         'lcg': [],
         'lcg-average': 0,
         'Math.random': [],
-        'Math.random-average': 0
+        'Math.random-average': 0,
+        'crypto-nodejs-generator': [],
+        'crypto-nodejs-generator-average': 0
     }
 
 }
@@ -185,6 +183,7 @@ for (var i = 0; i < 100; i++) {
     records['pi']['mersenne-twister'].push(pi(2000, MT))
     records['pi']['lcg'].push(pi(2000, LCG))
     records['pi']['Math.random'].push(pi(2000, Math.random))
+    records['pi']['crypto-nodejs-generator'].push(pi(2000, cryptoPseudoGenerator))
     if (i % 10 === 0) {
         console.log('pi', i)
     }
@@ -194,6 +193,7 @@ for (var i = 0; i < 10; i++) {
     records['parking']['mersenne-twister'].push(parking(MT))
     records['parking']['lcg'].push(parking(LCG))
     records['parking']['Math.random'].push(parking(Math.random))
+    records['parking']['crypto-nodejs-generator'].push(parking(cryptoPseudoGenerator))
     console.log('parking', i)
 }
 
@@ -202,6 +202,7 @@ for (var i = 0; i < 20; i++) {
     records['spheres']['mersenne-twister'].push(randomSpheres(MT))
     records['spheres']['lcg'].push(randomSpheres(LCG))
     records['spheres']['Math.random'].push(randomSpheres(Math.random))
+    records['spheres']['crypto-nodejs-generator'].push(randomSpheres(cryptoPseudoGenerator))
     console.log('randomSpheres', i)
 }
 
@@ -209,6 +210,7 @@ for (var i = 0; i < 100; i++) {
     records['minimum']['mersenne-twister'].push(minimumDistance(MT))
     records['minimum']['lcg'].push(minimumDistance(LCG))
     records['minimum']['Math.random'].push(minimumDistance(Math.random))
+    records['minimum']['crypto-nodejs-generator'].push(minimumDistance(cryptoPseudoGenerator))
     if (i % 10 === 0) {
         console.log('minimumDistance', i)
     }
@@ -230,7 +232,7 @@ for (var key in records) {
 
 console.log(records)
 
-fs.writeFile("results.log",JSON.stringify(records), function(err) {
+fs.writeFile("scores.log",JSON.stringify(records), function(err) {
     if(err) {
         return console.log(err);
     }
